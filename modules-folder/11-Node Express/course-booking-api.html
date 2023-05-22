@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course Booking API (Days 34-36)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-okaidia.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.css">
+ 
+</head>
+<body>
+
+  <div class="container">
+ <div id="cli-section">
+  <h1 class="fw-bold">(Days 34-36)Course Booking API</h1>
+  <!-- <h2>Module Objectives</h2> -->
+<!--   <ol>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+  </ol> -->
+  <div class="row">
+    <div class="col">
+      <!-- <h2>Day 1</h2> -->
+      <!-- <h3>Lesson Proper</h3> -->
+      <hr>
+
+      <h4>Course Booking App</h4>
+      <p>The course booking application is a web-based platform that allows users to explore and book various courses. It provides a user-friendly interface for users to register, search for courses, view course details, and make bookings. Users can create an account, log in, and update their profile information. The application offers a course listing page where users can browse through available courses, each displaying essential information. By clicking on a course, users can access detailed information about the course, including its description and instructor.</p><p> Users have the ability to search for specific courses using keywords and apply filters like category or price range. Once users find a course of interest, they can proceed to book it. The application integrates a secure payment gateway to handle course payments. Additionally, an admin dashboard is available for administrators to manage courses, user accounts, and bookings. Overall, the course booking application simplifies the process of discovering, selecting, and booking courses, providing a convenient and efficient platform for both users and administrators.</p>
+
+      <h4>Functionalities</h4>
+        <ol>
+  <li>User Registration and Login:
+    <ul>
+      <li>Allow users to create an account and log in to the application.</li>
+    </ul>
+  </li>
+  <li>Course Listing:
+    <ul>
+      <li>Display a list of available courses with basic information.</li>
+    </ul>
+  </li>
+  <li>Course Details:
+    <ul>
+      <li>Show additional details of a selected course, such as the course description and instructor.</li>
+    </ul>
+  </li>
+  <li>Course Booking:
+    <ul>
+      <li>Enable users to book a course they are interested in.</li>
+    </ul>
+  </li>
+  <li>User Profile:
+    <ul>
+      <li>Allow users to view and update their profile information.</li>
+    </ul>
+  </li>
+  <li>Search and Filtering:
+    <ul>
+      <li>Implement a search feature to help users find courses based on keywords or filters like category or price range.</li>
+    </ul>
+  </li>
+  <li>Admin Dashboard:
+    <ul>
+      <li>Create an admin panel to manage courses, user accounts, and bookings.</li>
+    </ul>
+  </li>
+  <li>Payment Integration:
+    <ul>
+      <li>Integrate a payment gateway to handle course payments securely.</li>
+    </ul>
+  </li>
+</ol>
+
+      <h4>Data Set (Schema)</h4>
+
+<ol>
+  <li>
+    User Collection:
+    <ul>
+      <li>
+        Fields:
+        <ul>
+          <li>_id (ObjectId): Unique identifier for the user.</li>
+          <li>firstName (String): First name of the user.</li>
+          <li>lastName (String): Last name of the user.</li>
+          <li>email (String): Email address of the user.</li>
+          <li>password (String): Hashed password of the user.</li>
+          <li>createdAt (Date): Timestamp indicating when the user account was created.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Course Collection:
+    <ul>
+      <li>
+        Fields:
+        <ul>
+          <li>_id (ObjectId): Unique identifier for the course.</li>
+          <li>name (String): Name of the course.</li>
+          <li>description (String): Description of the course.</li>
+          <li>instructor (String): Name of the course instructor.</li>
+          <li>price (Number): Price of the course.</li>
+          <li>duration (String): Duration of the course.</li>
+          <li>createdAt (Date): Timestamp indicating when the course was added.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Booking Collection:
+    <ul>
+      <li>
+        Fields:
+        <ul>
+          <li>_id (ObjectId): Unique identifier for the booking.</li>
+          <li>userId (ObjectId): Foreign key referencing the User collection, representing the user who made the booking.</li>
+          <li>courseId (ObjectId): Foreign key referencing the Course collection, representing the course that was booked.</li>
+          <li>bookingDate (Date): Date when the booking was made.</li>
+          <li>createdAt (Date): Timestamp indicating when the booking was created.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+<p>
+In this sample dataset, the User collection holds information about users, the Course collection contains details about courses, and the Booking collection represents the bookings made by users for specific courses. The relationships between the collections are established using the userId and courseId fields, which reference the corresponding documents in the User and Course collections, respectively.</p>
+
+
+<h5>User Collection</h5>
+          <pre><code class="language-javascript">
+{
+  "_id": ObjectId("615b1b9de8ae123456789abc"),
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@example.com",
+  "password": "hashedPassword123",
+  "createdAt": ISODate("2021-10-04T10:15:00Z")
+}
+          </code></pre>
+
+<h5>Course Collection</h5>
+          <pre><code class="language-javascript">
+{
+  "_id": ObjectId("615b1c0fe8ae123456789def"),
+  "name": "Introduction to Programming",
+  "description": "Learn the basics of programming",
+  "instructor": "Jane Smith",
+  "price": 99.99,
+  "duration": "4 weeks",
+  "createdAt": ISODate("2021-10-04T10:30:00Z")
+}
+          </code></pre>
+
+<h5>Booking Collection</h5>
+          <pre><code class="language-javascript">
+{
+  "_id": ObjectId("615b1c6de8ae123456789ghi"),
+  "userId": ObjectId("615b1b9de8ae123456789abc"),
+  "courseId": ObjectId("615b1c0fe8ae123456789def"),
+  "bookingDate": ISODate("2021-10-05T09:45:00Z"),
+  "createdAt": ISODate("2021-10-05T10:00:00Z")
+}
+
+          </code></pre>
+
+
+<p>In this example, we have a user with their personal details stored in the User collection. The Course collection contains information about a specific course. Lastly, the Booking collection represents a booking made by a user for a particular course, with references to the user and course documents using their respective ObjectId values. Each document also includes a createdAt field to track the creation timestamp.</p>
+
+<p>
+  In the provided example dataset for the course booking application, the relationships between collections can be categorized as reference relationships. Let's examine the relationships and discuss the pros and cons of using reference relationships:
+</p>
+
+
+<p>In the provided example dataset for the course booking application, the relationships between collections can be categorized as reference relationships. Let's examine the relationships and discuss the pros and cons of using reference relationships:</p>
+
+<h4>User Collection:</h4>
+<ul>
+  <li>No references to other collections are present in this example.</li>
+</ul>
+
+<h4>Course Collection:</h4>
+<ul>
+  <li>No references to other collections are present in this example.</li>
+</ul>
+
+<h4>Booking Collection:</h4>
+<ul>
+  <li>userId (ObjectId): This field references the User collection, representing the user who made the booking.</li>
+  <li>courseId (ObjectId): This field references the Course collection, representing the course that was booked.</li>
+</ul>
+
+<h4>Reference Relationships:</h4>
+
+<p><strong>Pros:</strong></p>
+<ol>
+  <li>Data Integrity: Reference relationships maintain data integrity by ensuring that related data is consistent and up to date. Any changes made to a referenced document will be reflected across all related bookings.</li>
+  <li>Flexibility: Reference relationships allow for flexible data management. Users can be associated with multiple bookings, and courses can have multiple bookings without duplicating data or creating unnecessary redundancy.</li>
+  <li>Scalability: Reference relationships enable scalability by allowing the application to handle a large number of bookings and users efficiently.</li>
+</ol>
+
+<p><strong>Cons:</strong></p>
+<ol>
+  <li>Increased Complexity: Implementing reference relationships requires additional code logic to perform database joins or multiple queries to retrieve related data from different collections.</li>
+  <li>Performance Considerations: As reference relationships involve retrieving data from multiple collections, it may result in additional database queries and potentially impact performance. Proper indexing and query optimization techniques can help mitigate this issue.</li>
+  <li>Potential Data Inconsistency: If not properly managed, reference relationships can lead to data inconsistencies. For example, if a referenced user or course is deleted, it may leave orphaned bookings unless proper cascading or cleanup mechanisms are in place.</li>
+</ol>
+
+<h4>Code-Along Course Booking API</h4>
+
+  <h5>Step 1: Project Setup</h5>
+  <ol>
+    <li>Install Node.js and npm (Node Package Manager) on your system. You can download them from the official Node.js website. Then create a new directory for your project:</li>
+
+<pre><code class="language-javascript">mkdir course-booking-api
+cd course-booking-api
+</code></pre>
+    <li>Initialize a new Node.js project using npm:
+</li>
+
+<pre><code class="language-javascript">npm init -y
+</code></pre>
+    <li>Install the necessary packages</li>
+
+<pre><code class="language-javascript">npm install express mongoose dotenv jsonwebtoken
+</code></pre>
+
+    <li>Create a .env file</li>
+
+<pre><code class="language-javascript">PORT=3000
+MONGODB_URI=your-mongodb-atlas-uri
+JWT_SECRET=your-jwt-secret
+</code></pre>
+
+    <li>Create a .gitignore file in the root directory and add the following entries to ignore node_modules and the .env file:</li>
+
+<pre><code class="language-javascript">node_modules/
+.env
+</code></pre>
+
+  </ol>
+
+
+
+  <h5>Step 2: Folder Structure
+
+</h5>
+  <ol>
+    <li>Your folder structure should follow the MVC architecture. </li>
+
+<pre><code class="language-javascript">course-booking-api/
+  ├── config/
+  │   └── db.js
+  ├── controllers/
+  │   ├── authController.js
+  │   ├── courseController.js
+  │   ├── bookingController.js
+  │   └── userController.js
+  ├── middleware/
+  │   └── authMiddleware.js
+  ├── models/
+  │   ├── User.js
+  │   ├── Course.js
+  │   └── Booking.js
+  ├── routes/
+  │   ├── authRoutes.js
+  │   ├── courseRoutes.js
+  │   ├── bookingRoutes.js
+  │   └── userRoutes.js
+  ├── index.js
+  └── package.json
+
+</code></pre>
+    
+
+  </ol>
+
+<h5>Step 3: Implementation of Functionality</h5>
+  <ol>
+    <li>Create the config/db.js file and add the following code to establish the connection to MongoDB Atlas:
+ </li>
+
+<pre><code class="language-javascript">// config/db.js
+
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+</code></pre>
+    <li>Create the models/User.js file and add the following code to define the User schema:
+
+</li>
+
+<pre><code class="language-javascript">// models/User.js
+const mongoose = require('mongoose');
+const userSchema = new mongoose.Schema(
+  {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
+const User = mongoose.model('User', userSchema);
+module.exports = User;
+
+</code></pre>
+    <li>Create the controllers/authController.js file and add the following code to implement the user registration and login functionality:</li>
+
+<pre><code class="language-javascript">// controllers/authController.js
+
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+
+// User Registration
+const register = async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+
+    // Check if user with the same email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User with this email already exists' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+    });
+
+    // Save the user to the database
+    await newUser.save();
+
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Error in user registration:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// User Login
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Check if the password is correct
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error('Error in user login:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { register, login };
+
+</code></pre>
+
+    <li>Create the routes/authRoutes.js file and add the following code to define the user registration and login routes:</li>
+
+<pre><code class="language-javascript">// routes/authRoutes.js
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
+
+// User Registration
+router.post('/register', authController.register);
+
+// User Login
+router.post('/login', authController.login);
+
+module.exports = router;
+</code></pre>
+
+    <li>In the index.js file, add the following code to set up the Express server and include the routes:</li>
+
+<pre><code class="language-javascript">// index.js
+
+const express = require('express');
+const connectDB = require('./config/db');
+require('dotenv').config();
+
+// Create Express app
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(express.json());
+
+// Define routes
+app.use('/api/auth', require('./routes/authRoutes'));
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+</code></pre>
+
+
+<li>Start the server</li>
+<pre><code class="language-javascript">node index.js
+</code></pre>
+
+<li>Course Listing: Create a new file controllers/courseController.js and implement the logic to fetch all courses
+</li>
+<pre><code class="language-javascript">// controllers/courseController.js
+
+const Course = require('../models/Course');
+
+// Function to get all courses
+const getAllCourses = async (req, res) => {
+  try {
+    const courses = await Course.find();
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch courses' });
+  }
+};
+
+module.exports = {
+  getAllCourses,
+};
+</code></pre>
+
+<li>Create a new file routes/courseRoutes.js and define the route for fetching all courses</li>
+<pre><code class="language-javascript">// routes/courseRoutes.js
+
+const express = require('express');
+const router = express.Router();
+const { getAllCourses } = require('../controllers/courseController');
+
+// GET /courses
+router.get('/', getAllCourses);
+
+module.exports = router;
+</code></pre>
+
+
+<li>Create a new file models/Course.js and define the Course schema:</li>
+<pre><code class="language-javascript">// models/Course.js
+
+const mongoose = require('mongoose');
+
+const courseSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  // Add more fields as per your requirements
+});
+
+module.exports = mongoose.model('Course', courseSchema);
+
+</code></pre>
+
+<li>Update the index.js file to include the course routes:
+</li>
+<pre><code class="language-javascript">// index.js
+
+const express = require('express');
+const connectDB = require('./config/db');
+const courseRoutes = require('./routes/courseRoutes');
+const authRoutes = require('./routes/authRoutes');
+
+require('dotenv').config();
+
+// Create Express app
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(express.json());
+
+// Define routes
+app.use('/courses', courseRoutes);
+app.use('/auth', authRoutes);
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+</code></pre>
+
+<li>Course Details:
+Update the controllers/courseController.js file to include a new function to fetch a single course by its ID</li>
+<pre><code class="language-javascript">// controllers/courseController.js
+
+const Course = require('../models/Course');
+
+// Function to get all courses
+const getAllCourses = async (req, res) => {
+  try {
+    const courses = await Course.find();
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch courses' });
+  }
+};
+
+
+// Function to get course by ID
+const getCourseById = async (req, res) => {
+  const courseId = req.params.id;
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch course' });
+  }
+};
+
+module.exports = {
+  getCourseById,
+  getAllCourses
+};
+</code></pre>
+
+<li>Update the routes/courseRoutes.js file to include a new route for fetching a single course:</li>
+<pre><code class="language-javascript">// routes/courseRoutes.js
+
+const express = require('express');
+const router = express.Router();
+const { getAllCourses, getCourseById } = require('../controllers/courseController');
+
+
+// GET /courses
+router.get('/', getAllCourses);
+
+// GET /courses/:id
+router.get('/:id', getCourseById);
+
+module.exports = router;
+</code></pre>
+
+<li>Course Booking:
+Create a new file controllers/bookingController.js and implement the logic to create a course booking:</li>
+<pre><code class="language-javascript">// controllers/bookingController.js
+
+const Booking = require('../models/Booking');
+
+// Function to create a booking
+const createBooking = async (req, res) => {
+  const { courseId, userId, date } = req.body;
+
+  try {
+    // Implement the logic to create a booking in the database
+    const booking = await Booking.create({
+      courseId,
+      userId,
+      date,
+    });
+
+    res.json(booking);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to create booking' });
+  }
+};
+
+module.exports = {
+  createBooking,
+};
+
+</code></pre>
+
+<li>Course Booking:
+Create a new file controllers/bookingController.js and implement the logic to create a course booking:
+javascript
+
+</li>
+<pre><code class="language-javascript">// controllers/bookingController.js
+
+const Booking = require('../models/Booking');
+
+// Function to create a booking
+const createBooking = async (req, res) => {
+  const { courseId, userId, date } = req.body;
+
+  try {
+    // Implement the logic to create a booking in the database
+    const booking = await Booking.create({
+      courseId,
+      userId,
+      date,
+    });
+
+    res.json(booking);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to create booking' });
+  }
+};
+
+module.exports = {
+  createBooking,
+};
+
+</code></pre>
+
+<li>Create a new file routes/bookingRoutes.js and define the route for creating a course booking:</li>
+<pre><code class="language-javascript">// routes/bookingRoutes.js
+
+const express = require('express');
+const router = express.Router();
+const { createBooking } = require('../controllers/bookingController');
+
+// POST /bookings
+router.post('/', createBooking);
+
+module.exports = router;
+
+</code></pre>
+
+<li>Update the index.js file to include the booking routes:
+</li>
+<pre><code class="language-javascript">// index.js
+
+const express = require('express');
+const connectDB = require('./config/db');
+const courseRoutes = require('./routes/courseRoutes');
+const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
+
+require('dotenv').config();
+
+// Create Express app
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(express.json());
+
+// Define routes
+app.use('/courses', courseRoutes);
+app.use('/auth', authRoutes);
+app.use('/bookings', bookingRoutes);
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+</code></pre>
+
+
+<li>User Profile:
+Create a new file controllers/userController.js and implement the logic to fetch user profile:
+</li>
+<pre><code class="language-javascript">// controllers/userController.js
+
+const User = require('../models/User');
+
+// Function to get user profile
+const getUserProfile = async (req, res) => {
+  const { id: userId } = req.params;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch user profile' });
+  }
+};
+
+module.exports = {
+  getUserProfile,
+};
+
+</code></pre>
+
+<li>Create a new file routes/userRoutes.js and define the route for fetching user profile:</li>
+<pre><code class="language-javascript">// routes/userRoutes.js
+
+const express = require('express');
+const router = express.Router();
+const { getUserProfile } = require('../controllers/userController');
+
+// GET /users/:id/profile
+router.get('/:id/profile', getUserProfile);
+
+module.exports = router;
+
+</code></pre>
+
+
+<li>Update the index.js file to include the user routes:</li>
+<pre><code class="language-javascript">// index.js
+
+const express = require('express');
+const connectDB = require('./config/db');
+const courseRoutes = require('./routes/courseRoutes');
+const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+require('dotenv').config();
+
+// Create Express app
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(express.json());
+
+// Define routes
+app.use('/courses', courseRoutes); // Routes for courses
+app.use('/auth', authRoutes); // Routes for authentication
+app.use('/bookings', bookingRoutes); // Routes for bookings
+app.use('/users', userRoutes); // Routes for users
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+</code></pre>
+
+
+<li>Search and Filtering:
+Update the controllers/courseController.js file to implement search and filtering:
+</li>
+<pre><code class="language-javascript">// controllers/courseController.js
+
+const Course = require('../models/Course');
+
+// Function to get all courses with search and filtering
+const getAllCourses = async (req, res) => {
+  try {
+    let query = {};
+
+    // Check if a search query is provided
+    if (req.query.search) {
+      const searchRegex = new RegExp(req.query.search, 'i');
+      query.$or = [{ title: searchRegex }, { description: searchRegex }];
+    }
+
+    // Check if a category filter is provided
+    if (req.query.category) {
+      query.category = req.query.category;
+    }
+
+    const courses = await Course.find(query);
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch courses' });
+  }
+};
+
+// Function to get course by ID
+const getCourseById = async (req, res) => {
+  const courseId = req.params.id;
+  try {
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch course' });
+  }
+};
+
+
+
+module.exports = {
+  getCourseById,
+  getAllCourses
+};
+</code></pre>
+
+<li>Admin Dashboard:
+Create a new file controllers/adminController.js and implement the logic for admin dashboard:</li>
+<pre><code class="language-javascript">// controllers/adminController.js
+
+const User = require('../models/User');
+const Course = require('../models/Course');
+const Booking = require('../models/Booking');
+
+// Function to get admin dashboard data
+const getAdminDashboardData = async (req, res) => {
+  try {
+    const totalUsers = await User.countDocuments();
+    const totalCourses = await Course.countDocuments();
+    const totalBookings = await Booking.countDocuments();
+
+    const dashboardData = {
+      totalUsers,
+      totalCourses,
+      totalBookings,
+    };
+
+    res.json(dashboardData);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch admin dashboard data' });
+  }
+};
+
+module.exports = {
+  getAdminDashboardData,
+};
+
+</code></pre>
+
+<li>Create a new file routes/adminRoutes.js and define the route for admin dashboard:</li>
+<pre><code class="language-javascript">// routes/adminRoutes.js
+
+const express = require('express');
+const router = express.Router();
+const { getAdminDashboardData } = require('../controllers/adminController');
+
+// GET /admin/dashboard
+router.get('/dashboard', getAdminDashboardData);
+
+module.exports = router;
+
+</code></pre>
+
+<li>Update the index.js file to include the admin routes:
+</li>
+<pre><code class="language-javascript">// index.js
+
+const express = require('express');
+const connectDB = require('./config/db');
+const courseRoutes = require('./routes/courseRoutes');
+const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
+
+require('dotenv').config();
+
+// Create Express app
+const app = express();
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(express.json());
+
+// Define routes
+app.use('/courses', courseRoutes); // Routes for courses
+app.use('/auth', authRoutes); // Routes for authentication
+app.use('/bookings', bookingRoutes); // Routes for bookings
+app.use('/users', userRoutes); // Routes for users
+app.use('/admin', adminRoutes); // Routes for admin
+
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+</code></pre>
+
+<li>Start the server</li>
+<pre><code class="language-javascript">node index.js
+</code></pre>
+
+<li>Start the server</li>
+<pre><code class="language-javascript">node index.js
+</code></pre>
+
+
+
+
+  </ol>
+
+  <h5>Payment Integration using Stripe</h5>
+  <ol>
+    <li>Sign up for a Stripe account: 1) Go to the Stripe website (https://stripe.com) and sign up for an account. 2) Complete the required steps to set up your Stripe account and obtain your API keys.
+    </li>
+
+    <li>Install the Stripe library: 1) Open your command line interface. 2)Navigate to the root directory of your project. 3) Run the following command to install the Stripe library:
+    </li>
+<pre><code class="language-javascript">npm install stripe
+</code></pre>
+
+    <li>Configure Stripe in your project: 1) Create a new file named config.js in your project's root directory. 2) Open the config.js file and add the following code: 3) Replace 'YOUR_STRIPE_SECRET_KEY' with your actual Stripe secret key obtained from your Stripe account.
+
+
+    </li>
+<pre><code class="language-javascript">// config/stripeConfig.js
+
+// Exporting the Stripe secret key
+module.exports = {
+  stripeSecretKey: 'YOUR_STRIPE_SECRET_KEY',
+};
+
+</code></pre>
+
+<li>Create a payment controller: Create a new file named controllers/paymentController.js.
+Add the following code to the paymentController.js file:</li>
+<pre><code class="language-javascript">const stripe = require('stripe')(require('../config').stripeSecretKey);
+
+const processPayment = async (req, res) => {
+  const { amount, cardNumber, expiryDate, cvv } = req.body;
+
+  try {
+    // Create a Stripe charge
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount,
+      currency: 'usd',
+      payment_method_types: ['card'],
+      description: 'Course Payment',
+      payment_method_data: {
+        type: 'card',
+        card: {
+          number: cardNumber,
+          exp_month: expiryDate.month,
+          exp_year: expiryDate.year,
+          cvc: cvv,
+        },
+      },
+    });
+
+    // Confirm the payment
+    await stripe.paymentIntents.confirm(paymentIntent.id);
+
+    res.json({ status: 'success' });
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to process payment' });
+  }
+};
+
+module.exports = {
+  processPayment,
+};
+
+</code></pre>
+
+<li>Create a payment routes file:
+
+Create a new file named routes/paymentRoutes.js.
+Add the following code to the paymentRoutes.js file:</li>
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const { processPayment } = require('../controllers/paymentController');
+
+router.post('/', processPayment);
+
+module.exports = router;
+
+</code></pre>
+
+<li>Update the index.js file to include the payment routes:
+
+Add the following code to the index.js file:</li>
+<pre><code class="language-javascript">const paymentRoutes = require('./routes/paymentRoutes');
+app.use('/payments', paymentRoutes);
+
+</code></pre>
+
+
+<li>Use the Stripe API for payment processing:
+
+In your course booking API, when handling the payment request, make a POST request to /payments with the required payment information (amount, cardNumber, expiryDate, cvv).
+The payment controller will handle the request and use the Stripe API to process the payment.</li>
+
+</ol>
+
+<h5>Testing the API using PostMan</h5>
+
+<ol>
+  <li>
+    Test User Routes:
+    <ul>
+      <li>
+        User Profile: Send a GET request to <code>{{baseURL}}/users/:id/profile</code> (replace <code>:id</code> with an actual user ID) to retrieve a user's profile. Use different user IDs to test different profiles.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Test Authentication Routes:
+    <ul>
+      <li>
+        User Registration: Send a POST request to <code>{{baseURL}}/register</code> with the following sample user registration data in the request body:
+        <pre><code class="language-javascript">{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "password123"
+}</code></pre>
+      </li>
+      <li>
+        User Login: Send a POST request to <code>{{baseURL}}/login</code> with the following sample user login credentials in the request body:
+        <pre><code class="language-javascript">{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}</code></pre>
+      </li>
+      <li>
+        Test with valid and invalid credentials.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Test Course Routes:
+    <ul>
+      <li>
+        Course Listing: Send a GET request to <code>{{baseURL}}/courses</code> to retrieve all available courses. Verify the response status code and the returned course data.
+      </li>
+      <li>
+        Course Details: Send a GET request to <code>{{baseURL}}/courses/:id</code> (replace <code>:id</code> with an actual course ID) to retrieve the details of a specific course. Test with different course IDs.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Test Booking Routes:
+    <ul>
+      <li>
+        Course Booking: Send a POST request to <code>{{baseURL}}/bookings</code> with the following sample booking data in the request body:
+        <pre><code class="language-javascript">{
+  "userId": "12345",
+  "courseId": "67890",
+  "bookingDate": "2022-01-01"
+}</code></pre>
+      </li>
+      <li>
+        Test with different booking scenarios, such as booking a course with valid and invalid data.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Test Admin Routes:
+    <ul>
+      <li>
+        Admin Dashboard: Send a GET request to <code>{{baseURL}}/admin/dashboard</code> to retrieve the admin dashboard data. Verify the response status code and the returned admin dashboard data.
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Note: Make sure to replace <code>{{baseURL}}</code> with the actual base URL of your API.</p>
+
+<ul>
+  <li>
+    User Profile: Use different user IDs to retrieve different user profiles.
+  </li>
+  <li>
+    User Registration: Provide sample user registration data in the request body, including fields like name, email, and password.
+  </li>
+  <li>
+    User Login: Provide sample user login credentials in the request body, including email and password.
+  </li>
+  <li>
+    Course Listing: No additional data is required.
+  </li>
+  <li>
+    Course Details: Use different course IDs to retrieve details for different courses.
+  </li>
+  <li>
+    Course Booking: Provide sample booking data in the request body, including user ID, course ID, and booking date.
+  </li>
+  <li>
+    Admin Dashboard: No additional data is required.
+  </li>
+</ul>
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script>
+    Prism.highlightAll();
+  </script>
+</body>
+</html>

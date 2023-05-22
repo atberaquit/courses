@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog API [Days 32-33]</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-okaidia.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.css">
+ 
+</head>
+<body>
+
+  <div class="container">
+ <div id="cli-section">
+  <h1 class="fw-bold">(Days 32-33) Blog API</h1>
+  <!-- <h2>Module Objectives</h2> -->
+<!--   <ol>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+  </ol> -->
+  <div class="row">
+    <div class="col">
+      <!-- <h2>Day 1</h2> -->
+      <!-- <h3>Lesson Proper</h3> -->
+      <hr>
+
+      <h4>Blog App</h4>
+      <p>A blog app API is a set of rules and protocols that allow developers to interact with a blog application. It provides functionality to create, read, update, and delete blog posts, manage user accounts, retrieve blog post data, enable commenting, and more. Developers can use the API to integrate the blog app's features into their own applications or websites.</p>
+
+      <h4>Functionalities</h4>
+<ol>
+  <li>
+    User Registration and Login:
+    <ul>
+      <li>Users can create an account by providing their email and password.</li>
+      <li>Users can log in using their registered credentials.</li>
+    </ul>
+  </li>
+  <li>
+    Blog Post Creation:
+    <ul>
+      <li>Authenticated users can create blog posts by providing a title and content.</li>
+      <li>Each blog post is associated with the user who created it.</li>
+    </ul>
+  </li>
+  <li>
+    Blog Post Retrieval:
+    <ul>
+      <li>Users can view a list of all blog posts.</li>
+      <li>Users can retrieve a specific blog post by its ID.</li>
+      <li>Blog posts can be displayed with the title, content, and author's name.</li>
+    </ul>
+  </li>
+  <li>
+    Blog Post Updating:
+    <ul>
+      <li>The author of a blog post can update its title and content.</li>
+    </ul>
+  </li>
+  <li>
+    Blog Post Deletion:
+    <ul>
+      <li>The author of a blog post can delete it from the system.</li>
+    </ul>
+  </li>
+  <li>
+    Commenting System:
+    <ul>
+      <li>Authenticated users can leave comments on blog posts.</li>
+      <li>Each comment is associated with the user who posted it and the blog post it belongs to.</li>
+      <li>Users can view comments on a specific blog post.</li>
+    </ul>
+  </li>
+  <li>
+    User Profile:
+    <ul>
+      <li>Users can view their own profile, which includes their username and the blog posts they have created.</li>
+    </ul>
+  </li>
+</ol>
+
+
+      <h4>Data Set (Schema)</h4>
+
+<ol>
+  <li>User Registration and Login:</li>
+  <ul>
+    <li>User 1:</li>
+    <ul>
+      <li>Email: user1@example.com</li>
+      <li>Password: ****** (hashed and stored securely)</li>
+    </ul>
+    <li>User 2:</li>
+    <ul>
+      <li>Email: user2@example.com</li>
+      <li>Password: ****** (hashed and stored securely)</li>
+    </ul>
+  </ul>
+  <li>Blog Post Creation:</li>
+  <ul>
+    <li>Blog Post 1:</li>
+    <ul>
+      <li>Title: "Introduction to Blogging"</li>
+      <li>Content: "This is a beginner's guide to blogging."</li>
+      <li>Author: User 1</li>
+    </ul>
+    <li>Blog Post 2:</li>
+    <ul>
+      <li>Title: "Tips for Writing Engaging Blog Posts"</li>
+      <li>Content: "Learn how to write blog posts that captivate your readers."</li>
+      <li>Author: User 2</li>
+    </ul>
+  </ul>
+  <li>Blog Post Retrieval:</li>
+  <ul>
+    <li>Retrieve all blog posts</li>
+    <li>Retrieve blog post by ID:</li>
+    <ul>
+      <li>Blog Post ID: 1</li>
+    </ul>
+  </ul>
+  <li>Blog Post Updating:</li>
+  <ul>
+    <li>Update blog post:</li>
+    <ul>
+      <li>Blog Post ID: 1</li>
+      <li>New title: "Updated Title"</li>
+      <li>New content: "This is the updated content of the blog post."</li>
+    </ul>
+  </ul>
+  <li>Blog Post Deletion:</li>
+  <ul>
+    <li>Delete blog post:</li>
+    <ul>
+      <li>Blog Post ID: 1</li>
+    </ul>
+  </ul>
+  <li>Commenting System:</li>
+  <ul>
+    <li>Comment 1:</li>
+    <ul>
+      <li>Content: "Great article! It helped me get started with my own blog."</li>
+      <li>Author: User 2</li>
+      <li>Associated Blog Post ID: 1</li>
+    </ul>
+    <li>Comment 2:</li>
+    <ul>
+      <li>Content: "Thanks for the useful information. Looking forward to more posts."</li>
+      <li>Author: User 1</li>
+      <li>Associated Blog Post ID: 1</li>
+    </ul>
+  </ul>
+  <li>User Profile:</li>
+  <ul>
+    <li>User 1:</li>
+    <ul>
+      <li>Username: user1</li>
+      <li>Blog Posts Created:</li>
+      <ul>
+        <li>Blog Post 1</li>
+      </ul>
+    </ul>
+    <li>User 2:</li>
+    <ul>
+      <li>Username: user2</li>
+      <li>Blog Posts Created:</li>
+      <ul>
+        <li>Blog Post 2</li>
+      </ul>
+    </ul>
+  </ul>
+</ol>
+
+
+
+
+<h5>Users Collection</h5>
+          <pre><code class="language-javascript">[
+  {
+    "_id": "user1",
+    "name": "John Doe",
+    "email": "john@example.com"
+  },
+  {
+    "_id": "user2",
+    "name": "Jane Smith",
+    "email": "jane@example.com"
+  },
+  {
+    "_id": "user3",
+    "name": "David Johnson",
+    "email": "david@example.com"
+  }
+]</code></pre>
+
+<h5>Posts Collection</h5>
+          <pre><code class="language-javascript">[
+  {
+    "_id": "post1",
+    "title": "My First Blog Post",
+    "content": "Lorem ipsum dolor sit amet...",
+    "user": "user1",
+    "comments": [
+      {
+        "_id": "comment1",
+        "text": "Great post!",
+        "user": "user2"
+      },
+      {
+        "_id": "comment2",
+        "text": "Thanks for sharing!",
+        "user": "user3"
+      }
+    ]
+  }
+]</code></pre>
+
+<ul>
+  <li>Users Collection:
+    <ul>
+      <li>It consists of an array of user objects.</li>
+      <li>Each user object has properties such as "_id", "name", and "email".</li>
+      <li>Each user has a unique identifier, represented by the "_id" field.</li>
+      <li>The "_id" field is a string, such as "user1", "user2", etc.</li>
+      <li>Other fields, like "name" and "email", store user-specific information.</li>
+    </ul>
+  </li>
+  <li>Posts Collection:
+    <ul>
+      <li>It also consists of an array of post objects.</li>
+      <li>Each post object has properties including "_id", "title", "content", "user", and "comments".</li>
+      <li>Similar to users, each post has a unique identifier represented by the "_id" field.</li>
+      <li>The "user" field specifies the user who created the post, referencing the "_id" from the Users collection.</li>
+      <li>The "comments" field is an array containing comment objects.</li>
+      <li>Each comment object has properties like "_id", "text", and "user".</li>
+      <li>The "user" field in comments refers to the user who posted the comment, referencing the "_id" from the Users collection.</li>
+    </ul>
+  </li>
+</ul>
+
+
+<h4>Hybrid Approach</h4>
+
+<p>The implementation described above can be categorized as a <strong>hybrid approach</strong> that combines elements of both the embedded and reference approaches.</p>
+<p>It uses the embedded approach for certain aspects, such as storing the user information directly within the post object in the Posts collection. The "user" field within the post object contains the user's unique identifier from the Users collection, allowing for quick retrieval of the associated user information.</p>
+<p>On the other hand, it also utilizes the reference approach by storing the user's unique identifier in the "user" field of the post object. This establishes a relationship between the post and the user, where the user information is stored in a separate Users collection. The "_id" field in the Users collection serves as a reference to identify the specific user associated with the post.</p>
+<p>Similarly, the comments in the "comments" array within the post object follow a reference approach by referencing the user who posted the comment using their unique identifier from the Users collection.</p>
+<p>This hybrid approach combines the benefits of both embedded and reference approaches, providing flexibility in managing the data structure while maintaining data integrity and enabling efficient retrieval of related information.</p>
+
+
+
+<h4>Code-Along Course Booking API</h4>
+
+<h5>Step 1: Set up the project</h5>
+<ol>
+  <li>Create a new directory for your project and navigate to it in the terminal.</li>
+  <li>Initialize a new Node.js project by running the command: <code>npm init -y</code></li>
+  <li>Install the required dependencies: <code>npm install express mongoose</code></li>
+  <li>Create the following directory structure:
+    <pre><code class="language-bash">src/
+├── models/
+│   ├── User.js
+│   ├── BlogPost.js
+│   └── Comment.js
+├── controllers/
+│   ├── authController.js
+│   ├── blogController.js
+│   └── commentController.js
+├── routes/
+│   ├── auth.js
+│   ├── blog.js
+│   ├── comment.js
+│   └── user.js
+└── index.js
+</code></pre>
+  </li>
+</ol>
+<h5>Step 2: Set up the database connection</h5>
+<p>Create a new file <code>src/config/db.js</code> and add the following code:</p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb+srv://your-mongodb-atlas-connection-string', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Failed to connect to MongoDB', error);
+    process.exit(1); // Exit the process with an error
+  }
+};
+
+
+module.exports = connectDB;</code></pre>
+
+<p>In <code>src/index.js</code>, import the <code>connectDB</code> function and call it to establish the database connection:</p>
+<pre><code class="language-javascript">const express = require('express');
+const connectDB = require('./config/db');
+
+const app = express();
+
+// Connect to the database
+connectDB();
+
+// Other app configurations and middleware
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+</code></pre>
+
+<h5>Step 3: Create the User model</h5>
+<p>In <code>src/models/User.js</code>, add the following code:</p>
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
+</code></pre>
+
+<h5>Step 4: Create the authentication routes and controllers</h5>
+In <code>src/routes/auth.js</code>, add the following code:
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const { registerUser, loginUser } = require('../controllers/authController');
+// User registration
+router.post('/register', registerUser);
+
+// User login
+router.post('/login', loginUser);
+
+module.exports = router;</code></pre>
+
+
+In <code>src/controllers/authController.js</code>, add the following code:
+<pre><code class="language-javascript">const User = require('../models/User');
+
+// User registration
+const registerUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if the email is already registered
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
+
+    // Create a new user
+    const newUser = new User({ email, password });
+    await newUser.save();
+
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Error during user registration:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// User login
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if the email and password match
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Validate password
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // Generate and send the JWT token
+    const token = generateToken(user);
+    res.json({ token });
+  } catch (error) {
+    console.error('Error during user login:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { registerUser, loginUser };</code></pre>
+
+
+<h5>Step 5: Create the blog post model, routes, and controllers</h5>
+In <code>src/models/BlogPost.js</code>, add the following code:
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+
+const blogPostSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+});
+
+const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
+module.exports = BlogPost;</code></pre>
+
+
+
+In <code>src/routes/blog.js</code>, add the following code:
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const { createBlogPost, getBlogPosts, getBlogPost, updateBlogPost, deleteBlogPost } = require('../controllers/blogController');
+
+// Create a new blog post
+router.post('/', createBlogPost);
+
+// Get all blog posts
+router.get('/', getBlogPosts);
+
+// Get a specific blog post
+router.get('/:id', getBlogPost);
+
+// Update a blog post
+router.put('/:id', updateBlogPost);
+
+// Delete a blog post
+router.delete('/:id', deleteBlogPost);
+
+module.exports = router;
+</code></pre>
+
+
+In <code>src/controllers/blogController.js</code>, add the following code:
+
+<pre><code class="language-javascript">const BlogPost = require('../models/BlogPost');
+const User = require('../models/User');
+
+// Create a new blog post
+const createBlogPost = async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const author = req.user.id; // Extracted from the authenticated user
+
+    // Create a new blog post
+    const newBlogPost = new BlogPost({ title, content, author });
+    await newBlogPost.save();
+
+    res.status(201).json({ message: 'Blog post created successfully' });
+  } catch (error) {
+    console.error('Error during blog post creation:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get all blog posts
+const getBlogPosts = async (req, res) => {
+  try {
+    const blogPosts = await BlogPost.find().populate('author', 'username');
+    res.json(blogPosts);
+  } catch (error) {
+    console.error('Error during blog posts retrieval:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get a specific blog post
+const getBlogPost = async (req, res) => {
+  try {
+    const blogPost = await BlogPost.findById(req.params.id).populate('author', 'username');
+    if (!blogPost) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+    res.json(blogPost);
+  } catch (error) {
+    console.error('Error during blog post retrieval:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Update a blog post
+const updateBlogPost = async (req, res) => {
+  try {
+    const { title, content } = req.body;
+
+    const blogPost = await BlogPost.findByIdAndUpdate(
+      req.params.id,
+      { title, content },
+      { new: true }
+    );
+    if (!blogPost) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+    res.json({ message: 'Blog post updated successfully' });
+  } catch (error) {
+    console.error('Error during blog post update:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Delete a blog post
+const deleteBlogPost = async (req, res) => {
+  try {
+    const blogPost = await BlogPost.findByIdAndDelete(req.params.id);
+    if (!blogPost) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+    res.json({ message: 'Blog post deleted successfully' });
+  } catch (error) {
+    console.error('Error during blog post deletion:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { createBlogPost, getBlogPosts, getBlogPost, updateBlogPost, deleteBlogPost };
+</code></pre>
+
+
+
+<h5>Step 6: Create the middleware for authentication</h5>
+In <code>src/middlewares/authMiddleware.js</code>, add the following code:
+<pre><code class="language-javascript">const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+
+// Middleware to verify JWT token and extract user data
+const authenticate = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    const decodedToken = jwt.verify(token, 'your-secret-key');
+    const user = await User.findById(decodedToken.userId);
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error('Error during authentication:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { authenticate };</code></pre>
+
+
+
+
+
+
+<h5>Step 7: Implement the remaining functionalities (commenting system, user profile)</h5>
+Create a new model for comments in  <code>src/models/Comment.js:</code>:
+
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+
+const commentSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  blogPost: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'BlogPost',
+    required: true,
+  },
+});
+
+const Comment = mongoose.model('Comment', commentSchema);
+
+module.exports = Comment;</code></pre>
+
+
+Add the following routes and controllers in src/routes/comment.js and src/controllers/commentController.js:
+
+
+In src/routes/comment.js:
+<pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+const { createComment, getCommentsByBlogPost } = require('../controllers/commentController');
+
+// Create a new comment
+router.post('/', createComment);
+
+// Get comments by blog post
+router.get('/blog/:blogPostId', getCommentsByBlogPost);
+
+module.exports = router;</code></pre>
+
+
+
+In src/controllers/commentController.js:
+<pre><code class="language-javascript">const Comment = require('../models/Comment');
+const User = require('../models/User');
+const BlogPost = require('../models/BlogPost');
+
+// Create a new comment
+const createComment = async (req, res) => {
+  try {
+    const { content, blogPostId } = req.body;
+    const author = req.user.id; // Extracted from the authenticated user
+
+    const blogPost = await BlogPost.findById(blogPostId);
+    if (!blogPost) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+
+    const newComment = new Comment({ content, author, blogPost: blogPostId });
+    await newComment.save();
+
+    res.status(201).json({ message: 'Comment created successfully' });
+  } catch (error) {
+    console.error('Error during comment creation:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get comments by blog post
+const getCommentsByBlogPost = async (req, res) => {
+  try {
+    const blogPostId = req.params.blogPostId;
+
+    const comments = await Comment.find({ blogPost: blogPostId }).populate('author', 'username');
+    res.json(comments);
+  } catch (error) {
+    console.error('Error during comments retrieval:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { createComment, getCommentsByBlogPost };</code></pre>
+
+
+Create a .env file
+
+<pre><code class="language-javascript">DB_CONNECTION_STRING=<your MongoDB Atlas connection string>
+JWT_SECRET=<your JWT secret key>
+PORT=3000</code></pre>
+
+
+Create a new model for comments in  <code>src/models/Comment.js:</code>:
+
+<pre><code class="language-javascript">const mongoose = require('mongoose');
+
+const commentSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  blogPost: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'BlogPost',
+    required: true,
+  },
+});
+
+const Comment = mongoose.model('Comment', commentSchema);
+
+module.exports = Comment;</code></pre>
+
+
+Update the src/index.js file to include the new routes:
+<pre><code class="language-javascript">require('dotenv').config();
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
+
+// Import routes
+const authRoutes = require('./routes/auth');
+const postRoutes = require('./routes/posts');
+const commentRoutes = require('./routes/comments');
+const userRoutes = require('./routes/users');
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/posts', postRoutes);
+app.use('/api/comments', commentRoutes);
+app.use('/api/users', userRoutes);
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+// Connect to MongoDB Atlas
+connectToDB();</code></pre>
+
+<h4>Test API endpoints in Postman</h4>
+
+<h5>Step 1: User Registration</h5>
+<ol>
+  <li>Set the request method to POST.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/auth/register</code>, replacing {port} with the actual port number.</li>
+  <li>In the request body, provide the following JSON object:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "email": "example@example.com",
+  "password": "password"
+}</code></pre>
+<ol start="4">
+  <li>Send the request and make sure you receive a successful response.</li>
+</ol>
+<h5>Step 2: User Login</h5>
+<ol>
+  <li>Set the request method to POST.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/auth/login</code>, replacing {port} with the actual port number.</li>
+  <li>In the request body, provide the following JSON object:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "email": "example@example.com",
+  "password": "password"
+}</code></pre>
+<ol start="4">
+  <li>Send the request and make sure you receive a successful response containing the user's access token.</li>
+</ol>
+<h5>Step 3: Create a Blog Post</h5>
+<ol>
+  <li>Set the request method to POST.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/posts</code>, replacing {port} with the actual port number.</li>
+  <li>Add the user's access token to the request headers as an Authorization header with the value <code>Bearer {access_token}</code>, replacing {access_token} with the actual access token.</li>
+  <li>In the request body, provide the following JSON object:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "title": "Example Blog Post",
+  "content": "This is an example blog post."
+}</code></pre>
+<ol start="5">
+  <li>Send the request and make sure you receive a successful response containing the created blog post.</li>
+</ol>
+<h5>Step 4: Retrieve All Blog Posts</h5>
+<ol>
+  <li>Set the request method to GET.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/posts</code>, replacing {port} with the actual port number.</li>
+  <li>Send the request and make sure you receive a successful response containing all the blog posts.</li>
+</ol>
+<h5>Step 5: Retrieve a Specific Blog Post</h5>
+<ol>
+  <li>Set the request method to GET.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/posts/{post_id}</code>, replacing {port} with the actual port number and {post_id} with the ID of the desired blog post.</li>
+  <li>Send the request and make sure you receive a successful response containing the specific blog post.</li>
+</ol>
+<h5>Step 6: Update a Blog Post</h5>
+<ol>
+  <li>Set the request method to PUT.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/posts/{post_id}</code>, replacing {port} with the actual port number and {post_id} with the ID of the blog post you want to update.</li>
+  <li>Add the user's access token to the request headers as an Authorization header with the value <code>Bearer {access_token}</code>, replacing {access_token} with the actual access token.</li>
+  <li>In the request body, provide the updated values for the blog post, such as:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "title": "Updated Blog Post",
+  "content": "This is the updated content of the blog post."
+}</code></pre>
+<ol start="5">
+  <li>Send the request and make sure you receive a successful response containing the updated blog post.</li>
+</ol>
+<h5>Step 7: Delete a Blog Post</h5>
+<ol>
+  <li>Set the request method to DELETE.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/posts/{post_id}</code>, replacing {port} with the actual port number and {post_id} with the ID of the blog post you want to delete.</li>
+  <li>Add the user's access token to the request headers as an Authorization header with the value <code>Bearer {access_token}</code>, replacing {access_token} with the actual access token.</li>
+  <li>Send the request and make sure you receive a successful response confirming the deletion of the blog post.</li>
+</ol>
+<h5>Step 8: Leave a Comment on a Blog Post</h5>
+<ol>
+  <li>Set the request method to POST.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/comments</code>, replacing {port} with the actual port number.</li>
+  <li>Add the user's access token to the request headers as an Authorization header with the value <code>Bearer {access_token}</code>, replacing {access_token} with the actual access token.</li>
+  <li>In the request body, provide the following JSON object:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "postId": "post_id",
+  "content": "This is a comment on the blog post."
+}</code></pre>
+<p>Replace "post_id" with the ID of the blog post you want to comment on.</p>
+<ol start="5">
+  <li>Send the request and make sure you receive a successful response containing the created comment.</li>
+</ol>
+<h5>Step 9: Retrieve Comments on a Blog Post</h5>
+<ol>
+  <li>Set the request method to GET.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/comments?postId=post_id</code>, replacing {port} with the actual port number and {post_id} with the ID of the blog post you want to retrieve comments for.</li>
+  <li>Send the request and make sure you receive a successful response containing the comments for the specified blog post.</li>
+</ol>
+<h5>Step 10: Retrieve User Profile</h5>
+<ol>
+  <li>Set the request method to GET.</li>
+  <li>Set the request URL to <code>http://localhost:{port}/api/users/profile</code>, replacing {port} with the actual port number.</li>
+  <li>Add the user's access token to the request headers as an Authorization header with the value <code>Bearer {access_token}</code>, replacing {access_token} with the actual access token.</li>
+  <li>Send the request and make sure you receive a successful response containing the user's profile information, including their username and blog posts they have created.</li>
+</ol>
+=====
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script>
+    Prism.highlightAll();
+  </script>
+</body>
+</html>

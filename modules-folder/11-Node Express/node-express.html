@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node and Express JS [Days 29-31]</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-okaidia.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.css">
+ 
+</head>
+<body>
+
+  <div class="container">
+ <div id="cli-section">
+  <h1 class="fw-bold"> (Day 29-31) Node and Express JS: Task Management </h1>
+  <!-- <h2>Module Objectives</h2> -->
+<!--   <ol>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien ac nunc aliquam cursus. </li>
+  </ol> -->
+  <div class="row">
+    <div class="col">
+      <!-- <h2>Day 1</h2> -->
+      <!-- <h3>Lesson Proper</h3> -->
+      <hr>
+
+      <h4>Fundamentals of RESTful APIs and their principles
+</h4>
+<p>
+      API stands for Application Programming Interface. In simple terms, an API is a set of rules and protocols that allows different software applications to communicate and interact with each other. It defines how different software components should interact, what data can be exchanged, and how it should be structured.</p>
+
+<p>
+An API acts as an intermediary between two software applications, enabling them to interact and exchange information in a standardized way. It provides a layer of abstraction, allowing developers to access certain functionalities or data of an application without having to understand the underlying code or implementation details.
+</p>
+
+<p>
+One of the commonly used data formats for transferring data through APIs is JSON (JavaScript Object Notation). JSON is a lightweight and human-readable format that represents data as key-value pairs. It is widely supported by various programming languages and is easy to work with.
+</p>
+
+<p>
+In the context of web development, APIs are commonly used to enable communication between a client application (such as a web browser or a mobile app) and a server application. The client sends requests to the server via API endpoints, and the server processes those requests and sends back responses containing the requested data or performing the requested actions.
+</p>
+
+<p>
+In web development, RESTful APIs provide a structured way for different systems to communicate and exchange data. Here are the key principles to understand:
+</p>
+
+<ul>
+  <li><strong>REST:</strong> REST (Representational State Transfer) is an architectural style that guides API design. It focuses on simplicity, scalability, and interoperability. RESTful APIs adhere to a set of rules that enable efficient communication between clients and servers.</li>
+  <li><strong>Resources and URLs:</strong> RESTful APIs revolve around resources, which represent entities or data. Each resource is uniquely identified by a URL called an endpoint. For example, in a social media application, a user's profile can be a resource accessible via the endpoint <code>/users/profile</code>.</li>
+  <li><strong>HTTP Methods:</strong> RESTful APIs use HTTP methods to perform actions on resources. The commonly used methods include:
+    <ul>
+      <li><strong>GET:</strong> Retrieve data from a resource. For example, sending a GET request to <code>/users/profile</code> would fetch the user's profile data.</li>
+      <li><strong>POST:</strong> Create a new resource. A POST request to <code>/users</code> with user information would create a new user account.</li>
+      <li><strong>PUT/PATCH:</strong> Update an existing resource. A PUT or PATCH request to <code>/users/profile</code> would modify the user's profile data.</li>
+      <li><strong>DELETE:</strong> Remove a resource. Sending a DELETE request to <code>/users/profile</code> would delete the user's profile.</li>
+    </ul>
+  </li>
+  <li><strong>Status Codes:</strong> RESTful APIs use HTTP status codes to indicate the outcome of a request. Some common status codes include:
+    <ul>
+      <li><strong>200 OK:</strong> The request was successful, and the server returns the requested data.</li>
+      <li><strong>201 Created:</strong> A new resource was successfully created.</li>
+      <li><strong>400 Bad Request:</strong> The request was invalid or malformed.</li>
+      <li><strong>401 Unauthorized:</strong> Authentication is required, or the provided credentials are invalid.</li>
+      <li><strong>404 Not Found:</strong> The requested resource does not exist.</li>
+      <li><strong>500 Internal Server Error:</strong> An unexpected server error occurred.</li>
+    </ul>
+  </li>
+</ul>
+
+      <h4>Use Case and Examples</h4>
+      <p>
+      Consider a blog application with a RESTful API. One use-case is retrieving blog posts. The API endpoint /posts can be used with the GET method to fetch all blog posts. Sending a GET request to /posts would return a list of blog posts, where each post is a resource with attributes like title, content, and author.
+    </p>
+
+
+<h5>Additional examples:</h5>
+
+<ul>
+  <li><strong>Creating a new blog post:</strong> Sending a POST request to `/posts` with the necessary data would create a new blog post resource.</li>
+  <li><strong>Updating a blog post:</strong> A PUT or PATCH request to `/posts/:id` with the updated data would modify a specific blog post identified by its ID.</li>
+  <li><strong>Deleting a blog post:</strong> Sending a DELETE request to `/posts/:id` would remove the blog post with the corresponding ID.</li>
+</ul>
+<p>
+To practice working with RESTful APIs, you can explore JSONPlaceholder (jsonplaceholder.typicode.com), a fake REST API that mimics a backend server. It provides various endpoints and resources that you can interact with using different HTTP methods to understand API concepts better.
+</p>
+
+<h4>Introduction to Node.js, Express.js, and Their Role in Server-side JavaScript Development</h4>
+<h5>Node.js</h5>
+Node.js is an open-source runtime environment that allows developers to run JavaScript code outside of a web browser. It provides a platform for server-side JavaScript development, enabling the execution of JavaScript on the server.
+<h5>Express.js</h5>
+Express.js is a minimal and flexible web application framework for Node.js. It provides a set of features and tools for building web applications and APIs quickly and easily.
+<h5>Key Points:</h5>
+<ul>
+  <li><strong>JavaScript on the Server:</strong> Traditionally, JavaScript was primarily used for client-side scripting within web browsers. However, with the introduction of Node.js, JavaScript can now be used to build server-side applications as well. This means that developers can write both the client-side and server-side code using the same programming language, JavaScript.</li>
+  <li><strong>Server-Side JavaScript Development:</strong> Node.js enables developers to build server-side applications using JavaScript, allowing for a seamless and consistent development experience. This eliminates the need to switch between different programming languages for client-side and server-side development.</li>
+  <li><strong>Asynchronous and Event-Driven:</strong> Node.js is built on an asynchronous, non-blocking I/O model, which makes it highly efficient and scalable. It uses an event-driven architecture, allowing multiple requests to be processed concurrently without blocking the execution of other code. This makes Node.js well-suited for handling high-traffic applications that require real-time communication or data-intensive operations.</li>
+  <li><strong>Express.js Framework:</strong> Express.js is a popular web application framework for Node.js. It provides a lightweight and flexible approach to building web applications and APIs. Express.js simplifies common tasks, such as routing, handling requests and responses, and managing middleware, making it easier to develop robust and scalable server-side applications.</li>
+  <li><strong>Versatility and Extensibility:</strong> Node.js and Express.js can be used to build a wide range of applications, including web servers, RESTful APIs, real-time applications, microservices, and more. They provide the flexibility and tools necessary for modern web development.</li>
+  <li><strong>JavaScript Ecosystem:</strong> Node.js and Express.js benefit from the extensive JavaScript ecosystem, with a wealth of libraries, frameworks, and tools available for developers. This allows developers to leverage existing JavaScript knowledge and resources when working with Node.js and Express.js.</li>
+</ul>
+
+<h4>
+<p>Exploring HTTP Methods (GET, POST, PUT, DELETE) and Their Mapping to CRUD Operations</h4>
+HTTP (Hypertext Transfer Protocol) is the protocol used for communication between a client (such as a web browser) and a server. It defines a set of methods, also known as verbs, that specify the action to be performed on a resource. Understanding these methods is crucial for building RESTful APIs and performing CRUD (Create, Read, Update, Delete) operations.
+</p>
+
+<h5>GET Method:</h5>
+<p>
+The GET method is used to retrieve data from a server. It is a safe and idempotent operation, meaning it should not modify any data on the server. In terms of CRUD operations, the GET method maps to the "Read" operation. For example, when a client sends a GET request to /users, the server responds with a list of users.
+</p>
+<h5>POST Method:</h5>
+<p>
+The POST method is used to send data to the server to create a new resource. It is not idempotent, as each request typically results in a new resource being created. In CRUD operations, the POST method maps to the "Create" operation. For example, when a client sends a POST request to /users, the server creates a new user based on the provided data.
+<p>
+<h5>PUT Method:</h5>
+<p>
+The PUT method is used to update an existing resource on the server. It replaces the entire resource with the new data provided in the request. In CRUD operations, the PUT method maps to the "Update" operation. For example, when a client sends a PUT request to /users/{id}, the server updates the user with the specified ID using the provided data.
+</p>
+<h5>DELETE Method:</h5>
+<p>
+The DELETE method is used to remove a resource from the server. It permanently deletes the specified resource. In CRUD operations, the DELETE method maps to the "Delete" operation. For example, when a client sends a DELETE request to /users/{id}, the server deletes the user with the specified ID.
+</p>
+
+<p>
+By understanding the mapping between HTTP methods and CRUD operations, you can design and implement a RESTful API that follows the principles of a standardized API architecture. This allows clients to interact with the server and perform various operations on the available resources, ensuring efficient and organized data management.
+</p>
+
+<h4>Demonstrating how to design API endpoints and their corresponding routes for the task management application (Code-Along)
+</h4>
+
+<h5>Step 1: Set Up the Project</h5>
+<ol>
+  <li>Create a new directory for your project and navigate to it using the terminal or command prompt.</li>
+  <li>Initialize a new Node.js project using <code>npm init -y</code> and follow the prompts to set up the project metadata.</li>
+  <li>Install the necessary dependencies by running the following command:<br><code>npm install express dotenv nodemon</code></li>
+</ol>
+<h5>Step 2: Create the Project Structure</h5>
+<p>Create the following files in your project directory:</p>
+<ul>
+  <li>index.js (entry point)</li>
+  <li>.env (environment variable configuration)</li>
+</ul>
+<h5>Step 3: Set Up the .env File</h5>
+<ol>
+  <li>Open the .env file in a text editor.</li>
+  <li>Define the environment variables required for your project. For example:<br><code>PORT=3000</code></li>
+</ol>
+<h5>Step 4: Configure the index.js File</h5>
+<p>Open the index.js file in a text editor.</p>
+<p>Import the necessary dependencies:</p>
+<pre><code class="language-javascript">const express = require('express');
+require('dotenv').config();
+const app = express();
+const port = process.env.PORT || 3000;</code></pre>
+<h5>Step 5: Set Up Middleware and JSON Parsing</h5>
+<p>Add the following code to set up middleware and enable JSON parsing:</p>
+<pre><code class="language-javascript">app.use(express.json());</code></pre>
+<h5>Step 6: Define API Endpoints and Routes</h5>
+<p>Define the endpoints and their corresponding routes for the task management application:</p>
+<pre><code class="language-javascript">// Sample data for demonstration purposes
+let tasks = [
+  { id: 1, title: 'Task 1', description: 'Description for Task 1' },
+  { id: 2, title: 'Task 2', description: 'Description for Task 2' },
+  { id: 3, title: 'Task 3', description: 'Description for Task 3' }
+];
+
+// GET all tasks
+app.get('/tasks', (req, res) => {
+  res.json(tasks);
+});
+
+// GET a specific task by ID
+app.get('/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id);
+  const task = tasks.find((task) => task.id === taskId);
+  if (task) {
+    res.json(task);
+  } else {
+    res.status(404).json({ message: 'Task not found' });
+  }
+});
+
+// POST a new task
+app.post('/tasks', (req, res) => {
+  const { title, description } = req.body;
+  const newTask = { id: tasks.length + 1, title, description };
+  tasks.push(newTask);
+  res.status(201).json(newTask);
+});
+
+// PATCH (update) a task by ID
+app.patch('/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id);
+  const { title, description } = req.body;
+  let updatedTask = null;
+  tasks = tasks.map((task) => {
+    if (task.id === taskId) {
+      task.title = title || task.title;
+      task.description = description || task.description;
+      updatedTask = task;
+    }
+    return task;
+  });
+  if (updatedTask) {
+    res.json(updatedTask);
+  } else {
+    res.status(404).json({ message: 'Task not found' });
+  }
+});
+
+// DELETE a task by ID
+app.delete('/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id);
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
+  if (taskIndex !== -1) {
+    tasks.splice(taskIndex, 1);
+    res.json({ message: 'Task deleted' });
+  } else {
+    res.status(404).json({ message: 'Task not found' });
+  }
+});
+</code></pre>
+
+<h5>Step 7: Start the Server</h5>
+<p>Add the following code at the end of the index.js file to start the server:</p>
+<pre><code class="language-javascript">app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});</code></pre>
+<h5>Step 8: Run the Application</h5>
+<p>Start the application by running the following command in the terminal or command prompt:</p>
+<pre><code class="language-javascript">npx nodemon index.js</code></pre>
+<p>This will start the server and automatically restart it whenever you make changes to the code.</p>
+
+
+
+<h4>Using Postman to Interact with the Task Management API</h4>
+<h5>Step 1: Open Postman</h5>
+<ol>
+  <li>Launch the Postman application on your computer.</li>
+</ol>
+<h5>Step 2: Create a Collection</h5>
+<ol>
+  <li>Click on the "New" button in the top-left corner of the Postman window.</li>
+  <li>Enter a name for your collection, e.g., "Task Management API".</li>
+  <li>Click on the "Create" button to create the collection.</li>
+</ol>
+<h5>Step 3: Create a POST Request to Create a New Task</h5>
+<ol>
+  <li>Select the previously created collection from the sidebar.</li>
+  <li>Click on the "New" button to create a new request.</li>
+  <li>Enter a name for the request, e.g., "Create New Task".</li>
+  <li>Select the HTTP method as "POST".</li>
+  <li>Enter the URL of your API endpoint, e.g., "http://localhost:3000/tasks".</li>
+  <li>Go to the "Body" tab.</li>
+  <li>Select the "raw" option and choose "JSON" as the format.</li>
+  <li>Enter the request body in JSON format, e.g.:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "title": "Task 4",
+  "description": "Description for Task 4"
+}</code></pre>
+<h5>Step 4: Create a GET Request to Retrieve All Tasks</h5>
+<ol>
+  <li>Create a new request within the same collection.</li>
+  <li>Enter a name for the request, e.g., "Get All Tasks".</li>
+  <li>Select the HTTP method as "GET".</li>
+  <li>Enter the URL of your API endpoint, e.g., "http://localhost:3000/tasks".</li>
+</ol>
+<h5>Step 5: Create a GET Request to Retrieve a Specific Task</h5>
+<ol>
+  <li>Create a new request within the same collection.</li>
+  <li>Enter a name for the request, e.g., "Get Task by ID".</li>
+  <li>Select the HTTP method as "GET".</li>
+  <li>Enter the URL of your API endpoint with the task ID, e.g., "http://localhost:3000/tasks/1" (replace "1" with the desired task ID).</li>
+</ol>
+<h5>Step 6: Create a PATCH Request to Update a Task</h5>
+<ol>
+  <li>Create a new request within the same collection.</li>
+  <li>Enter a name for the request, e.g., "Update Task".</li>
+  <li>Select the HTTP method as "PATCH".</li>
+  <li>Enter the URL of your API endpoint with the task ID, e.g., "http://localhost:3000/tasks/1" (replace "1" with the desired task ID).</li>
+  <li>Go to the "Body" tab.</li>
+  <li>Select the "raw" option and choose "JSON" as the format.</li>
+  <li>Enter the updated task details in JSON format, e.g.:</li>
+</ol>
+<pre><code class="language-javascript">{
+  "title": "Updated Task 1",
+  "description": "Updated description for Task 1"
+}</code></pre>
+<h5>Step 7: Create a DELETE Request to Delete a Task</h5>
+<ol>
+  <li>Create a new request within the same collection.</li>
+  <li>Enter a name for the request, e.g., "Delete Task".</li>
+  <li>Select the HTTP method as "DELETE".</li>
+  <li>Enter the URL of your API endpoint with the task ID, e.g., "http://localhost:3000/tasks/1" (replace "1" with the desired task ID).</li>
+</ol>
+<h5>Step 8: Save Requests in the Collection</h5>
+<ol>
+  <li>After creating all the requests, make sure you have the desired collection selected in the sidebar.</li>
+  <li>Click on the "Save" button to save all the requests within the collection.</li>
+</ol>
+
+
+<h4>The Request-Response Cycle:</h4>
+<p>When working with APIs, understanding the request-response cycle is essential. It involves the flow of communication between a client (e.g., a web browser or Postman) and a server. Here's a simplified breakdown of the cycle:</p>
+<h5>Client Sends a Request:</h5>
+<ul>
+  <li>The client sends an HTTP request to a server, specifying the desired resource and any additional data or parameters. The request includes an HTTP method (e.g., GET, POST, PATCH, DELETE) and a URL (Uniform Resource Locator) that identifies the resource.</li>
+</ul>
+<h5>Server Processes the Request:</h5>
+<ul>
+  <li>Upon receiving the request, the server processes it based on the specified HTTP method and URL. It performs the necessary operations, such as retrieving data, updating records, or executing actions.</li>
+</ul>
+<h5>Server Generates a Response:</h5>
+<ul>
+  <li>After processing the request, the server generates an HTTP response. The response contains a status code, headers, and an optional body. The status code represents the outcome of the request (e.g., success, error), while the headers provide additional information about the response.</li>
+</ul>
+<h5>Server Sends the Response:</h5>
+<ul>
+  <li>The server sends the response back to the client, which receives and interprets it. The client can then take appropriate action based on the response, such as displaying data or handling errors.</li>
+</ul>
+<p>Inspecting Responses in Postman:</p>
+<h5>Send a Request:</h5>
+<ul>
+  <li>Using Postman, send a request to the desired API endpoint by specifying the method, URL, and any required parameters or data.</li>
+</ul>
+<h5>Receive the Response:</h5>
+<ul>
+  <li>Postman will display the response received from the server. You can view the response in various formats, such as JSON, XML, or plain text.</li>
+</ul>
+<h5>Inspect the Response Details:</h5>
+<ul>
+  <li>Postman provides detailed information about the response. You can view the status code, headers, and response body. The status code indicates the outcome of the request, while the headers provide additional metadata. The response body contains the actual data returned by the server.</li>
+</ul>
+<p>Common Status Codes and Error Handling:</p>
+<p>HTTP status codes indicate the status of a request. Here are some commonly used status codes and their meanings:</p>
+<ul>
+  <li>200 OK: The request was successful, and the server returned the requested data.</li>
+  <li>201 Created: The request was successful, and a new resource was created.</li>
+  <li>400 Bad Request: The server cannot process the request due to invalid syntax or parameters.</li>
+  <li>401 Unauthorized: The client is not authorized to access the requested resource.</li>
+  <li>404 Not Found: The requested resource was not found on the server.</li>
+  <li>500 Internal Server Error: An unexpected error occurred on the server.</li>
+</ul>
+<p>Error handling in API development involves gracefully handling and communicating errors to clients. This can include returning appropriate status codes, error messages, and error formats (e.g., JSON) to help clients understand and handle errors effectively.</p>
+
+
+
+
+<h4>Setting up a Model and Schema in the Database:</h4>
+<h5>Step 1: Install Dependencies:</h5>
+<pre><code class="language-javascript">
+npm install mongoose
+</code></pre>
+<h5>Step 2: Import Dependencies:</h5>
+<pre><code class="language-javascript">
+const mongoose = require('mongoose');
+</code></pre>
+<h5>Step 3: Connect to the Database:</h5>
+<pre><code class="language-javascript">
+const connectToDatabase = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error.message);
+    process.exit(1);
+  }
+};
+connectToDatabase();
+</code></pre>
+
+<h5>Step 4: Create a "models" Folder:</h5>
+<p>Create a new folder called "models" in your project directory.</p>
+<h5>Step 5: Define the Task Model:</h5>
+<p>Create a new file called "taskModel.js" inside the "models" folder. Use the Mongoose Schema class to define the task schema:</p>
+<pre><code class="language-javascript">
+const mongoose = require('mongoose');
+
+const taskSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+module.exports = mongoose.model('Task', taskSchema);
+</code></pre>
+<h5>Step 6: Update Existing Code:</h5>
+<p>In your existing codebase (e.g., routes, controllers), import the Task model for CRUD operations or other interactions with the database:</p>
+<pre><code class="language-javascript">
+const Task = require('../models/taskModel');
+</code></pre>
+
+
+
+<h4>Refactoring Existing Code to Use Controllers and Routes:</h4>
+<h5>Step 1: Create the "controllers" Folder:</h5>
+<p>Create a new folder called "controllers" inside your project directory. This folder will contain the code for handling different operations related to tasks.</p>
+<h5>Step 2: Create the "taskController.js" File:</h5>
+<p>Inside the "controllers" folder, create a new file called "taskController.js". Import the Task model and define the necessary controller functions:</p>
+<pre><code class="language-javascript">
+const Task = require('../models/taskModel');
+
+// Controller functions
+const getAllTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find();
+    res.json(tasks);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getTaskById = async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const createTask = async (req, res) => {
+  try {
+    const task = await Task.create(req.body);
+    res.status(201).json(task);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const updateTask = async (req, res) => {
+  try {
+    const task = await Task.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json(task);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const deleteTask = async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json({ message: 'Task deleted successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  getAllTasks,
+  getTaskById,
+  createTask,
+  updateTask,
+  deleteTask,
+};
+</code></pre>
+<h5>Step 3: Create the "routes" Folder:</h5>
+<p>Create a new folder called "routes" inside your project directory. This folder will contain the code for defining and handling routes related to tasks.</p>
+<h5>Step 4: Create the "taskRoutes.js" File:</h5>
+<p>Inside the "routes" folder, create a new file called "taskRoutes.js". Import the necessary modules and the taskController:</p>
+<pre><code class="language-javascript">
+const express = require('express');
+const {
+  getAllTasks,
+  getTaskById,
+  createTask,
+  updateTask,
+  deleteTask,
+} = require('../controllers/taskController');
+
+// Create the router
+const router = express.Router();
+
+// Define the routes
+router.get('/', getAllTasks);
+router.get('/:id', getTaskById);
+router.post('/', createTask);
+router.patch('/:id', updateTask);
+router.delete('/:id', deleteTask);
+
+module.exports = router;
+</code></pre>
+<h5>Step 5: Update Existing Code:</h5>
+<p>In your main server file (e.g., app.js), import the taskRoutes:</p>
+<pre><code class="language-javascript">
+const taskRoutes = require('./routes/taskRoutes');
+</code></pre>
+<p>Use the taskRoutes middleware in your app:</p>
+<pre><code class="language-javascript">
+app.use('/tasks', taskRoutes);
+</code></pre>
+
+
+
+
+
+<h4>Introduction to User Authentication and Authorization Concepts:</h4>
+<h5>Authentication:</h5>
+<p>Authentication is the process of verifying the identity of a user. It ensures that only authorized users can access restricted parts of an application. Common authentication mechanisms include username/password, social login (e.g., using Google or Facebook), and JSON Web Tokens (JWT). During authentication, users typically provide credentials (e.g., username and password) which are validated against stored information in a database or external authentication providers. Successful authentication usually results in the generation of a token or session, which is then used for subsequent authorized requests.</p>
+<h5>Authorization:</h5>
+<p>Authorization is the process of granting or denying access to specific resources or actions based on a user's identity and permissions. Once a user is authenticated, authorization determines what actions they can perform and which resources they can access. Authorization is typically based on roles or permissions associated with a user or user group. Examples of authorization mechanisms include role-based access control (RBAC) and attribute-based access control (ABAC). By implementing authorization, you can enforce fine-grained access control and protect sensitive data or functionalities.</p>
+<p>User authentication and authorization work together to ensure that only authenticated and authorized users can access certain parts of an application. These concepts are essential for building secure and robust web applications, especially when dealing with sensitive user data or performing privileged operations. By understanding and implementing these concepts correctly, you can enhance the security and integrity of your application.</p>
+
+
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script>
+    Prism.highlightAll();
+  </script>
+</body>
+</html>
