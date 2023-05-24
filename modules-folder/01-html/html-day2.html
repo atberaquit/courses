@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Advanced HTML Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-okaidia.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.css">
+
+  <style>
+    /* Custom CSS styling goes here */
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML 2</h1>
+        <hr>
+        <div class="alert alert-dismissible alert-light">
+            <strong>Heads-up!</strong> Do code-along and lecture to demonstrate the topics below.
+        </div>
+          <h4>Objectives:</h4>
+          <ul>
+            <li>Understand the concept of semantic HTML and its importance in web development.</li>
+            <li>Learn about advanced form elements and attributes.</li>
+            <li>Explore tables and their usage in structuring data.</li>
+            <li>Gain knowledge about embedding external content using iframes.</li>
+          </ul>
+          <h4>Lesson Proper:</h4>
+          
+            
+              <h5>Semantic HTML</h5>
+              <ul>
+                <li>Definition and purpose of semantic HTML</li>
+                <li>Importance of using semantic tags for better accessibility and search engine optimization</li>
+                <li>Examples of semantic tags such as &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt;, &lt;footer&gt;, etc.</li>
+                <li>Guidelines for using semantic HTML effectively</li>
+            </ul>
+            
+            
+              <h5>Tables</h5>
+              <ul>
+                <li>Introduction to HTML tables and their usage in organizing tabular data</li>
+                <li>Creating table structures using the &lt;table&gt;, &lt;tr&gt;, &lt;th&gt;, and &lt;td&gt; tags</li>
+                <li>Merging cells horizontally using the colspan attribute</li>
+                <li>Merging cells vertically using the rowspan attribute</li>
+                <li>Applying table headers using the &lt;thead&gt;, &lt;tbody&gt;, and &lt;tfoot&gt; tags</li>
+                <li>Styling tables using CSS and adding captions with the &lt;caption&gt; tag</li>
+              </ul>
+
+    
+        <main>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h4>Activity:</h4>
+                <ol>
+                    <li>Create an HTML file named "advanced.html".</li>
+                    <li>Copy and paste the provided sample code into the HTML file.</li>
+                    <li>Design a semantic structure for the webpage using appropriate semantic tags, such as &lt;header&gt;, &lt;main&gt;, &lt;form&gt;, &lt;table&gt;, and &lt;footer&gt;.</li>
+                    <li>Implement an advanced contact form that includes input fields for name, email, and message using the &lt;input&gt; and &lt;textarea&gt; elements. Add the necessary labels using the &lt;label&gt; tag and apply the required attribute for validation.</li>
+                    <li>Create a table to display student grades using the &lt;table&gt;, &lt;thead&gt;, &lt;tbody&gt;, &lt;th&gt;, and &lt;td&gt; tags. Use the colspan and rowspan attributes to merge cells and structure the table accordingly.</li>
+                    <li>Customize the styling of the webpage using CSS to enhance the visual appeal.</li>
+                    <li>Test the webpage by loading it in a web browser and ensuring that all elements are displayed correctly.</li>
+                  </ol>
+                <h4>Sample Solution:</h4>
+                <pre><code class="language-javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Advanced HTML Page&lt;/title&gt;
+&lt;style&gt;
+    /* CSS styling goes here */
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+    &lt;header&gt;
+    &lt;h1&gt;Contact Form&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+    &lt;form&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required&gt;
+
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+
+        &lt;label for="message"&gt;Message:&lt;/label&gt;
+        &lt;textarea id="message" name="message" required&gt;&lt;/textarea&gt;
+
+        &lt;input type="submit" value="Submit"&gt;
+    &lt;/form&gt;
+
+    &lt;table&gt;
+        &lt;caption&gt;Student Grades&lt;/caption&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Student Name&lt;/th&gt;
+            &lt;th&gt;Subject&lt;/th&gt;
+            &lt;th&gt;Grade&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;John Doe&lt;/td&gt;
+            &lt;td&gt;Math&lt;/td&gt;
+            &lt;td&gt;A&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Science&lt;/td&gt;
+            &lt;td&gt;B+&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Jane Smith&lt;/td&gt;
+            &lt;td colspan="2"&gt;No Data Available&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+    &lt;p&gt;&copy; 2023 My Website. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+    
+
+
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script>
+    Prism.highlightAll();
+  </script>
+</body>
+</html>
